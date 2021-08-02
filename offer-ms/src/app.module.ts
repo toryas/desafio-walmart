@@ -3,15 +3,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { OfferModule } from './modules/offer/offer.module';
 
 const {
-  MONGO_USR,
-  MONGO_PSW,
-  MONGO_HOST,
-  MONGO_COLLECTION
+  MONGO_USER,
+  MONGO_PASS,
+  MONGO_HOST
 } = process.env
 @Module({
   imports: [
     OfferModule,
-    MongooseModule.forRoot(`mongodb://productListUser:productListPassword@localhost:27017/admin`, {
+    MongooseModule.forRoot(`mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}:27017/admin`, {
       dbName:`promotions`
     })
   ]
