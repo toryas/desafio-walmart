@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+    mongo_service:
+        image: mongo:3.6.8
+        ports: 
+            - "27017:27017"
+        environment: 
+            - MONGO_INITDB_ROOT_USERNAME=productListUser
+            - MONGO_INITDB_ROOT_PASSWORD=productListPassword
+    mongo_database:
+        image: mongo:3.6.8
+        depends_on: 
+            - mongo_service
+        links: 
+            - mongo_service
+        volumes:
+            - ./database:/database
+        command:
+            /database/import.sh
+        environment: 
+            - MONGO_HOST=mongo_service
+            - MONGO_USER=productListUser
+            - MONGO_PASS=productListPassword
+    offer_ms:
+        build: ./offer-ms/
+        ports:
+            - "3000:3000"
+        depends_on:
+            - mongo_service
+            - mongo_database
+        links: 
+            - mongo_service
+        environment: 
+            - MONGO_USER=productListUser
+            - MONGO_PASS=productListPassword
+            - MONGO_HOST=mongo_service
+    search_app:
+        build: ./search-app/
+        ports:
+            - "3001:80"
+        depends_on: 
+            - mongo_service
+            - mongo_database
+        links: 
+            - offer_ms
+        environment: 
+            - REACT_APP_OFFER_HOST=offer_ms
+            - REACT_APP_OFFER_PORT=3000
+
+    
+        
+        
