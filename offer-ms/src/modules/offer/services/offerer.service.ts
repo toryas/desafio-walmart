@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { isPalindrome } from '../../../shared/utils/common.utils';
+import { isPalindrome } from '../../../shared/utils/common.util';
 import { ProductsService } from './products.service';
 
 @Injectable()
