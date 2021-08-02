@@ -25,7 +25,7 @@ services:
     offer_ms:
         build: ./offer-ms/
         ports:
-            - "3000:3000"
+            - "3001:3001"
         depends_on:
             - mongo_service
             - mongo_database
@@ -35,18 +35,18 @@ services:
             - MONGO_USER=productListUser
             - MONGO_PASS=productListPassword
             - MONGO_HOST=mongo_service
+            - PORT=3001
     search_app:
         build: ./search-app/
         ports:
-            - "3001:80"
+            - "8080:80"
         depends_on: 
             - mongo_service
             - mongo_database
         links: 
             - offer_ms
         environment: 
-            - REACT_APP_OFFER_HOST=offer_ms
-            - REACT_APP_OFFER_PORT=3000
+            - API_ENDPOINT="http://localhost:3001"
 
     
         

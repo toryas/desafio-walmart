@@ -30,10 +30,12 @@ Existen varias formas de inciar este artefacto a continuacion se describen 3 for
 1) Se deben definir las siguiente variables de entorno:
     - MONGO_USER: nombre de usuario de admin de mongoDB
     - MONGO_PASS:  contraseña de usuario de admin de mongoDB
-    - PORT: (opcional) puerto en el que escuchara el microservicio, si no se especifica el microservicio estada escuchando en el puerto 3000
+    - PORT: (opcional) puerto en el que escuchara el microservicio, si no se especifica el microservicio estada escuchando en el puerto 3001
 
 2) Instalar dependencias con el comando `npm i`
 3) Iniciar miscroservicio con el comando `npm start`
+
+El microservicio estará disponible en la ruta http://localhost:3001 
 
 ***Observaciones***:
 * El artefacto consulta a una base de datos llamada **promotions**
@@ -43,10 +45,12 @@ Existen varias formas de inciar este artefacto a continuacion se describen 3 for
 1) Se deben definir las siguiente variables de entorno:
     - MONGO_USER: nombre de usuario de admin de mongoDB
     - MONGO_PASS:  contraseña de usuario de admin de mongoDB
-    - PORT: (opcional) puerto en el que escuchara el microservicio, si no se especifica el microservicio estada escuchando en el puerto 3000
+    - PORT: (opcional) puerto en el que escuchara el microservicio, si no se especifica el microservicio estada escuchando en el puerto 3001
 2) Instalar dependencias con el comando `npm i`
 3) Realizar transpilacion de codigo con el comando `npm run build`
 4) Iniciar microservicio con el comando `npm run start:prod`
+
+El microservicio estará disponible en la ruta http://localhost:3001
 
 ***Observaciones***:
 * El artefacto consulta a una base de datos llamada **promotions**
@@ -57,12 +61,14 @@ Existen varias formas de inciar este artefacto a continuacion se describen 3 for
 Se incluye un archivo Dockerfile con el cual puede crear una imagen docker para inciar el microservicio, para ello los pasos a seguir son los siguientes:
 
 * Ejecutar comando `docker  build -t <nombre_imagen> .`
-* Ejecutar comando `docker run -p 3000:3000 -e MONGO_USER=<user_mongodb> -e MONGO_PASS=<password_mongodb> -e MONGO_HOST=<host_mongodb> <nombre_imagen>`
+* Ejecutar comando `docker run -p 3001:3001 -e MONGO_USER=<user_mongodb> -e MONGO_PASS=<password_mongodb> -e MONGO_HOST=<host_mongodb> <nombre_imagen>`
 
 ***Observaciones***:
 * El artefacto consulta a una base de datos llamada **promotions**
 * El artefacto las credenciales **MONGO_USER** y  **MONGO_PASS** corresponden al usuario admin de la base de datos
-* El microservicio estara escuchando en el puerto 3000
+* El microservicio estará escuchando en el puerto 3001
+
+El microservicio estará disponible en la ruta http://localhost:3001
 
 ## Pruabas del artefacto
 ---
