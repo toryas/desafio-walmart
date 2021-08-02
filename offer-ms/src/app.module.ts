@@ -10,7 +10,7 @@ const {
 @Module({
   imports: [
     OfferModule,
-    MongooseModule.forRoot(`mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}:27017/admin`, {
+    MongooseModule.forRoot(`mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}:${process.env.MONGO_PORT??27017}/admin`, {
       dbName:`promotions`
     })
   ]

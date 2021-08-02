@@ -1,73 +1,61 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Microservicio Offer MS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Microservicio encargado de entrergar listado de productos y entregar ofertas en base a busqueda de palindormos
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Endpoint dispobles
 
-## Description
+|         Path         | Method | Parametros                                            | Description                                                                                       |
+| :------------------: | :----: | :---------------------------------------------------- | :------------------------------------------------------------------------------------------------ |
+| /products/byd/:value |  GET   | <li>**value:** valor de referencia para busqueda</li> | trae los productos donde los artibutos **banrd** o **descrition** contengan el valor de **value** |
+| /products/id/:value  |  GET   | <li>**value:** valor de referencia para busqueda</li> | trae los productos donde los artibutos **id** contengan el valor de **value**                     |
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+## Requerimientos
+---
 
-```bash
-$ npm install
-```
+Para poder iniciar este microservicio se requiere el siguienre runtime en el servidor:
+- Nodejs >= 12
 
-## Running the app
+Adisionalmente este microservicio necesita de una base de datos para poder obtener los productos:
 
-```bash
-# development
-$ npm run start
+- BD MongoDB
 
-# watch mode
-$ npm run start:dev
+## Ejecucion
+---
 
-# production mode
-$ npm run start:prod
-```
+Existen varias formas de inciar este artefacto a continuacion se describen 3 formas:
 
-## Test
+## Iniciar microservicio en servidor de dessarrollo:
+Lo primero que se debe hacer para poder iniciar este microservicio es instalar las dependencias del proyecto con el comando `npm i`. Luego para iniciar el miscorservicio en modo desarrollo basta con ejecutar el comando `npm start`, esto levantara el en modo desarrollo.
+Este metodo de incialización emplea la transpilacion en momento de ejecución, por lo que su performance no sera el mejor.
 
-```bash
-# unit tests
-$ npm run test
+## Iniciar microservicio en servidor de produccion:
 
-# e2e tests
-$ npm run test:e2e
+Como en el caso anterior lo primero que se debe hacer para iniciar este microservicio es instalar sus dependencias con el comando `npm i`. Luego para inciar el microservicion en un ambiente productivo es necesario primero realizar la transpilacion del codigo, para ello primero se debe ejecutar el comando `npm run build`, tras la ejecucion de este comando, se creara un directorio llamado **dist**. Una vez realizada la transpilacion del código se debe ejecutar el comando `npm run start:prod`. 
 
-# test coverage
-$ npm run test:cov
-```
+## Iniciar microservicio en contenedor Docker:
 
-## Support
+Se incluye un archivo Dockerfile con el cual puede crear una imagen docker para inciar el microservicio, para ello los pasos a seguir son los siguientes:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+* Ejecutar comando `docker  build -t <nombre_imagen> .`
+* Ejecutar comando `docker run -p 3000:3000 -e MONGO_USER=<user_mongodb> -e MONGO_PASS=<password_mongodb> -e MONGO_HOST=<host_mongodb> <nombre_imagen>`
 
-## Stay in touch
+***Observaciones***:
+* El artefacto consulta a una base de datos llamada **promotions**
+* El artefacto las credenciales **MONGO_USER** y  **MONGO_PASS** corresponden al usuario admin de la base de datos
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Pruabas del artefacto
+---
+Este artefacto cuenta con la implementacion de 2 tipos de pruebas: Pruebas unitarias y Pruebas e2e.
 
-## License
+## Pruebas unitarias
 
-Nest is [MIT licensed](LICENSE).
+Para correr las pruebas unitaris de este microservicio se debe ejecutar el comando `npm run test`
+
+### Covertura de código
+
+Para poder realizar un análisis de la covertura de código de las pruebas se debe ejecutar el comando `npm run test:cov`, esto entregara un informe de covertura  consola, además generara una carpeta llamada **coverage** con el reporte.
+
+## Pruebas e2e
+
+Para ejecutar las pruebas e2e se debe ejecutar el comando `npm run test:e2e`
