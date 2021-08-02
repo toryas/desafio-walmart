@@ -5,7 +5,7 @@ import { getModelToken } from '@nestjs/mongoose';
 import { OfferModule } from './../src/modules/offer/offer.module';
 import { Product } from './../src/modules/offer/models/product.model';
 
-describe('AppController (e2e)', () => {
+describe('Pruebas e2e', () => {
   let app: INestApplication;
   let findMock;
   beforeEach(async () => {

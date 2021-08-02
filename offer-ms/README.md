@@ -26,12 +26,31 @@ Adisionalmente este microservicio necesita de una base de datos para poder obten
 Existen varias formas de inciar este artefacto a continuacion se describen 3 formas:
 
 ## Iniciar microservicio en servidor de dessarrollo:
-Lo primero que se debe hacer para poder iniciar este microservicio es instalar las dependencias del proyecto con el comando `npm i`. Luego para iniciar el miscorservicio en modo desarrollo basta con ejecutar el comando `npm start`, esto levantara el en modo desarrollo.
-Este metodo de incialización emplea la transpilacion en momento de ejecución, por lo que su performance no sera el mejor.
+
+1) Se deben definir las siguiente variables de entorno:
+    - MONGO_USER: nombre de usuario de admin de mongoDB
+    - MONGO_PASS:  contraseña de usuario de admin de mongoDB
+    - PORT: (opcional) puerto en el que escuchara el microservicio, si no se especifica el microservicio estada escuchando en el puerto 3000
+
+2) Instalar dependencias con el comando `npm i`
+3) Iniciar miscroservicio con el comando `npm start`
+
+***Observaciones***:
+* El artefacto consulta a una base de datos llamada **promotions**
 
 ## Iniciar microservicio en servidor de produccion:
 
-Como en el caso anterior lo primero que se debe hacer para iniciar este microservicio es instalar sus dependencias con el comando `npm i`. Luego para inciar el microservicion en un ambiente productivo es necesario primero realizar la transpilacion del codigo, para ello primero se debe ejecutar el comando `npm run build`, tras la ejecucion de este comando, se creara un directorio llamado **dist**. Una vez realizada la transpilacion del código se debe ejecutar el comando `npm run start:prod`. 
+1) Se deben definir las siguiente variables de entorno:
+    - MONGO_USER: nombre de usuario de admin de mongoDB
+    - MONGO_PASS:  contraseña de usuario de admin de mongoDB
+    - PORT: (opcional) puerto en el que escuchara el microservicio, si no se especifica el microservicio estada escuchando en el puerto 3000
+2) Instalar dependencias con el comando `npm i`
+3) Realizar transpilacion de codigo con el comando `npm run build`
+4) Iniciar microservicio con el comando `npm run start:prod`
+
+***Observaciones***:
+* El artefacto consulta a una base de datos llamada **promotions**
+
 
 ## Iniciar microservicio en contenedor Docker:
 
@@ -43,10 +62,12 @@ Se incluye un archivo Dockerfile con el cual puede crear una imagen docker para 
 ***Observaciones***:
 * El artefacto consulta a una base de datos llamada **promotions**
 * El artefacto las credenciales **MONGO_USER** y  **MONGO_PASS** corresponden al usuario admin de la base de datos
+* El microservicio estara escuchando en el puerto 3000
 
 ## Pruabas del artefacto
 ---
 Este artefacto cuenta con la implementacion de 2 tipos de pruebas: Pruebas unitarias y Pruebas e2e.
+Antes de poder ejecutar cualquier tipo de prueba es necesario instalar las dependencias con el comando `npm i`
 
 ## Pruebas unitarias
 
