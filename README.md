@@ -13,7 +13,7 @@ Para más informacion de cada proyecto haga clic en el nombre dle proyecto para 
 Para inicializar el proyecto **Desafio Walmart** (sear-app, offer-ms y database) existe un archivo ***docker-compose.yml*** con la configuracion del stack, que le permitira levantar los 3 comonentes del proyecto en un ambiende docker. Para ello debe seguir las sisuignetes instrucciones:
 
 1. Clonar proyecto desde github
-2. Ejecutar comando `ddocker-compose build`
+2. Ejecutar comando `docker-compose build`
 3. Ejecutrar comando `docker-compose run`
 
 Siguiendo estas sintrucciones se levantaran 3 contenedores y podra acceder a las aplicaciones en las siguientes rutas:
